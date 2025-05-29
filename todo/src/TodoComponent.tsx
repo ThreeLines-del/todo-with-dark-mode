@@ -15,7 +15,7 @@ const TodoComponent: React.FC<TodoComponentType> = ({ todo }) => {
   return (
     <div
       className={`rounded-md h-15 grid grid-cols-5 w-80 hover:cursor-pointer hover:shadow hover:shadow-gray-600 hover:scale-105 transition duration-200 ease-in-out ${
-        todo.id === todoContext.editingTodoID ? "border-blue-500 border" : ""
+        todo._id === todoContext.editingTodoID ? "border-blue-500 border" : ""
       }`}
     >
       <div
@@ -37,7 +37,7 @@ const TodoComponent: React.FC<TodoComponentType> = ({ todo }) => {
         </h1>
       </div>
       <div className="flex justify-center items-center bg-white rounded-r-md border-t border-b border-r border-gray-200 dark:bg-gray-800 dark:border-gray-800 gap-2">
-        {todoContext.editingTodoID === todo.id && !todo.isMarked ? (
+        {todoContext.editingTodoID === todo._id && !todo.isMarked ? (
           <button
             onClick={(e) => {
               todoContext.cancelEdit();
@@ -50,7 +50,7 @@ const TodoComponent: React.FC<TodoComponentType> = ({ todo }) => {
         ) : (
           <button
             onClick={(e) => {
-              todoContext.removeTodo(todo.id);
+              todoContext.removeTodo(todo._id);
               e.stopPropagation();
             }}
             className="text-gray-500 hover:text-blue-500 hover:cursor-pointer"
@@ -61,7 +61,7 @@ const TodoComponent: React.FC<TodoComponentType> = ({ todo }) => {
 
         <button
           onClick={(e) => {
-            todoContext.handleMarkedOnClick(todo.id);
+            todoContext.handleMarkedOnClick(todo._id);
             e.stopPropagation();
           }}
           className={`text-gray-500 hover:text-green-400 hover:cursor-pointer ${

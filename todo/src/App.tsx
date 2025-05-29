@@ -79,7 +79,7 @@ function App() {
       <div className="flex-1 rounded-md bg-gray-100 w-[370px] md:w-[700px] lg:w-[1020px] xl:w-[1110px] overflow-y-auto p-5 dark:bg-gray-700">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {todos.map((todo) => {
-            return <TodoComponent key={todo.id} todo={todo} />;
+            return <TodoComponent key={todo._id} todo={todo} />;
           })}
         </div>
       </div>

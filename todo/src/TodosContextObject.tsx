@@ -8,11 +8,11 @@ interface TodosContextObjectType {
   todoColor: string;
   setTodoColor: React.Dispatch<React.SetStateAction<string>>;
   addTodo: (e: React.FormEvent) => void;
-  removeTodo: (todoID: number) => void;
+  removeTodo: (todoID: string) => void;
   editTodo: (todo: TodoType) => void;
-  editingTodoID: number | null;
+  editingTodoID: string | null;
   cancelEdit: () => void;
-  handleMarkedOnClick: (id: number) => void;
+  handleMarkedOnClick: (id: string) => void;
 }
 
 interface Children {
@@ -37,7 +37,7 @@ function TodosProvider({ children }: Children) {
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<TodoType[]>([]);
   const [todoColor, setTodoColor] = useState<string>("#51a2ff");
-  const [editingTodoID, setEditingTodoID] = useState<number | null>(null);
+  const [editingTodoID, setEditingTodoID] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("http://localhost:8080/api/todos")
@@ -82,6 +82,7 @@ function TodosProvider({ children }: Children) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             todo: todo,
+            isMarked: false,
             todoColor: todoColor,
           }),
         });
@@ -90,8 +91,8 @@ function TodosProvider({ children }: Children) {
           throw new Error("Error response");
         }
 
-        const data: TodoType[] = await response.json();
-        setTodos(data);
+        const data: TodoType = await response.json();
+        setTodos((prevTodos) => [...prevTodos, data]);
       } catch (error) {
         console.error("Failed to add todo:", error);
       }
@@ -101,7 +102,7 @@ function TodosProvider({ children }: Children) {
     setTodoColor("#51a2ff");
   }
 
-  async function removeTodo(todoID: number) {
+  async function removeTodo(todoID: String) {
     try {
       const response = await fetch(
         `http://localhost:8080/api/todos/${todoID}`,
@@ -124,7 +125,7 @@ function TodosProvider({ children }: Children) {
 
     setTodo(todo.todo);
     setTodoColor(todo.todoColor);
-    setEditingTodoID(todo.id);
+    setEditingTodoID(todo._id);
   }
 
   function cancelEdit() {
@@ -133,7 +134,7 @@ function TodosProvider({ children }: Children) {
     setTodoColor("#51a2ff");
   }
 
-  async function handleMarkedOnClick(id: number) {
+  async function handleMarkedOnClick(id: String) {
     try {
       const response = await fetch(
         `http://localhost:8080/api/todos/${id}/mark`,
@@ -146,8 +147,13 @@ function TodosProvider({ children }: Children) {
         throw new Error("Failed to toggle marked");
       }
 
-      const data: TodoType[] = await response.json();
-      setTodos(data);
+      const data: TodoType = await response.json();
+
+      setTodos((prevTodos) =>
+        prevTodos.map((t) =>
+          t._id === data._id ? { ...t, isMarked: data.isMarked } : t
+        )
+      );
     } catch (error) {
       console.error("Error toggling todo:", error);
     }
