@@ -1,5 +1,5 @@
 export interface TodoType {
-  id: number;
+  _id: string;
   todo: string;
   isMarked: boolean;
   todoColor: string;
