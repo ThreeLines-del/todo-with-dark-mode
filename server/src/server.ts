@@ -2,8 +2,12 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import { todosRouter } from "../routes/todo.route.js";
+import dotenv from "dotenv";
 
-const port: Number = 8080;
+dotenv.config();
+
+const port = process.env.PORT;
+const mongoUri = process.env.MONGO_URI;
 const app = express();
 
 //Body parser middleware
@@ -20,10 +24,13 @@ app.use(cors(corsOptions));
 app.use("/api/todos", todosRouter);
 
 //connect to database
+if (!mongoUri) {
+  console.error("MONGO_URI is not defined in environment variables.");
+  process.exit(1);
+}
+
 mongoose
-  .connect(
-    "REDACTED"
-  )
+  .connect(mongoUri)
   .then(() => {
     console.log("Connected to database");
     app.listen(port, () => {
