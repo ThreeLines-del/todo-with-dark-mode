@@ -2,5 +2,8 @@
   "dependencies": {
     "@types/cors": "^2.8.18",
     "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0"
   }
 }

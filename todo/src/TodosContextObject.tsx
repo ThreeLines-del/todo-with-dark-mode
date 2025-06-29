@@ -102,7 +102,7 @@ function TodosProvider({ children }: Children) {
     setTodoColor("#51a2ff");
   }
 
-  async function removeTodo(todoID: String) {
+  async function removeTodo(todoID: string) {
     try {
       const response = await fetch(
         `http://localhost:8080/api/todos/${todoID}`,
@@ -134,7 +134,7 @@ function TodosProvider({ children }: Children) {
     setTodoColor("#51a2ff");
   }
 
-  async function handleMarkedOnClick(id: String) {
+  async function handleMarkedOnClick(id: string) {
     try {
       const response = await fetch(
         `http://localhost:8080/api/todos/${id}/mark`,
