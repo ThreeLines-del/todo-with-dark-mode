@@ -36,11 +36,13 @@ The application will be available at:
 
 ### Light Mode
 
-![Light Mode Demo](./docs/images/light-mode.png)
+![Screenshot (5)](https://github.com/user-attachments/assets/13edc680-d600-4504-ad70-61598ad7cfee)
+
 
 ### Dark Mode
 
-![Dark Mode Demo](./docs/images/dark-mode.png)
+![Screenshot (6)](https://github.com/user-attachments/assets/49aa235f-18cc-4194-b4c5-8f43f488b2e7)
+
 
 ### Features in Action
 
