@@ -1,6 +1,54 @@
 # Todo Application with Dark Mode
 
-A full-stack todo application built with React, TypeScript, Express.js, and MongoDB, featuring dark mode functionality and comprehensive testing.
+![License](https://img.shields.io/badge/license-ISC-blue.svg)
+![Node.js](https://img.shields.io/badge/node.js-v16+-green.svg)
+![React](https://img.shields.io/badge/react-18.3.1-blue.svg)
+![TypeScript](https://img.shields.io/badge/typescript-5.x-blue.svg)
+![MongoDB](https://img.shields.io/badge/mongodb-6.x-green.svg)
+![Express](https://img.shields.io/badge/express-5.x-lightgrey.svg)
+
+A full-stack todo application built with React, TypeScript, Express.js, and MongoDB, featuring dark mode functionality.
+
+## 🚀 Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/todo-with-dark-mode.git
+cd todo-with-dark-mode
+
+# Install dependencies for both frontend and backend
+npm install
+
+# Set up environment variables
+cp server/.env.example server/.env
+# Edit server/.env with your MongoDB connection string
+
+# Start the development servers
+npm run dev
+```
+
+The application will be available at:
+
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:8080
+
+## 📸 Demo
+
+### Light Mode
+
+![Light Mode Demo](./docs/images/light-mode.png)
+
+### Dark Mode
+
+![Dark Mode Demo](./docs/images/dark-mode.png)
+
+### Features in Action
+
+- ✅ Add, edit, and delete todos
+- ✅ Mark todos as complete/incomplete
+- ✅ Color-coded todos with custom colors
+- ✅ Responsive design (1-3 column grid)
+- ✅ Dark/Light mode toggle with persistence
 
 ## Project Structure
 
@@ -34,88 +82,6 @@ A full-stack todo application built with React, TypeScript, Express.js, and Mong
 - ✅ Input validation
 - ✅ Comprehensive test coverage
 
-## Issues Fixed
-
-### Backend Issues Fixed
-
-1. **Typos in Error Messages**
-
-   - Fixed "messgae" → "message"
-   - Fixed "occured" → "occurred"
-
-2. **Inconsistent Error Messages**
-
-   - Changed "Product not found" → "Todo not found" for consistency
-
-3. **Missing Return Statements**
-
-   - Added `return` statements after error responses to prevent further execution
-
-4. **Type Inconsistencies**
-
-   - Fixed `String` → `string` for parameter types
-
-5. **Input Validation**
-
-   - Added comprehensive input validation for todo creation and updates
-   - Validates required fields, data types, and empty strings
-
-6. **HTTP Status Codes**
-
-   - Changed POST response from 200 → 201 (Created)
-   - Added proper 400 responses for validation errors
-
-7. **Database Query Options**
-   - Added `{ new: true }` option to `findByIdAndUpdate` to return updated document
-
-### Frontend Issues Fixed
-
-1. **Type Consistency**
-
-   - Fixed parameter types from `String` → `string` in context functions
-
-2. **Error Handling**
-   - Added proper error handling for API calls
-   - Added console error logging for debugging
-
-## Testing
-
-### Backend Tests
-
-Comprehensive test suite for all API endpoints:
-
-- **GET /api/todos**
-
-  - Returns empty array when no todos exist
-  - Returns all todos when they exist
-
-- **POST /api/todos**
-
-  - Creates new todos successfully
-  - Validates required fields
-  - Validates data types
-  - Returns appropriate error messages
-
-- **PUT /api/todos/:id**
-
-  - Updates existing todos
-  - Validates input data
-  - Returns 404 for non-existent todos
-  - Returns updated todos list
-
-- **DELETE /api/todos/:id**
-
-  - Deletes existing todos
-  - Returns 404 for non-existent todos
-  - Returns updated todos list
-
-- **PATCH /api/todos/:id/mark**
-  - Toggles todo completion status
-  - Returns 404 for non-existent todos
-  - Updates todo state correctly
-
-### Frontend Tests
-
 Comprehensive test suite for React components:
 
 - **App Component**
@@ -135,29 +101,58 @@ Comprehensive test suite for React components:
   - Prevents editing marked todos
   - Handles event propagation correctly
 
-## Installation & Setup
-
-### Prerequisites
+## 📋 Prerequisites
 
 - Node.js (v16 or higher)
-- MongoDB
+- MongoDB (v4.4 or higher)
 - npm or yarn
+- Git
 
-### Backend Setup
+## 🛠️ Installation & Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/todo-with-dark-mode.git
+cd todo-with-dark-mode
+```
+
+### 2. Install Root Dependencies
+
+```bash
+npm install
+```
+
+### 3. Backend Setup
 
 ```bash
 cd server
 npm install
 ```
 
+### 4. Environment Configuration
+
 Create a `.env` file in the server directory:
 
-```env
-PORT=8080
-MONGO_URI=mongodb://localhost:27017/todo-app
+```bash
+cp server/.env.example server/.env
 ```
 
-### Frontend Setup
+Edit the `.env` file with your configuration:
+
+```env
+# Server Configuration
+PORT=8080
+NODE_ENV=development
+
+# Database Configuration
+MONGO_URI=mongodb://localhost:27017/todo-app
+
+# Optional: For production
+# MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/todo-app
+```
+
+### 5. Frontend Setup
 
 ```bash
 cd todo
@@ -273,15 +268,117 @@ interface TodoType {
 - **Error handling** throughout the application
 - **Consistent code formatting** with auto-formatting
 
-## Contributing
+## 🚀 Deployment
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass
-6. Submit a pull request
+### Production Build
 
-## License
+#### Backend
 
-This project is licensed under the ISC License.
+```bash
+cd server
+npm run build
+npm start
+```
+
+#### Frontend
+
+```bash
+cd todo
+npm run build
+npm run preview
+```
+
+### Environment Variables for Production
+
+```env
+# Production Environment
+NODE_ENV=production
+PORT=8080
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/todo-app
+
+# Optional: Add additional security configurations
+JWT_SECRET=your-jwt-secret-key
+CORS_ORIGIN=https://yourdomain.com
+```
+
+### Deployment Platforms
+
+- **Frontend**: Vercel, Netlify, GitHub Pages
+- **Backend**: Heroku, Railway, DigitalOcean, AWS
+- **Database**: MongoDB Atlas, AWS DocumentDB
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+#### MongoDB Connection Issues
+
+```bash
+# Check if MongoDB is running
+mongosh
+
+# For MongoDB Atlas, ensure:
+# 1. IP address is whitelisted
+# 2. Database user has proper permissions
+# 3. Connection string is correct
+```
+
+#### Port Already in Use
+
+```bash
+# Kill process using port 8080
+npx kill-port 8080
+
+# Or use a different port
+PORT=3001 npm run dev
+```
+
+#### CORS Issues
+
+If you encounter CORS errors, ensure your backend CORS configuration matches your frontend URL:
+
+```typescript
+// server/src/server.ts
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN || "http://localhost:5173",
+  })
+);
+```
+
+### Development Guidelines
+
+- **Code Style**: Follow existing TypeScript and React patterns
+- **Testing**: Maintain test coverage above 80%
+- **Documentation**: Update README for new features
+- **Commits**: Use conventional commit messages
+
+### Reporting Issues
+
+Please use the GitHub Issues tab to report bugs or request features. Include:
+
+- Steps to reproduce
+- Expected behavior
+- Actual behavior
+- Environment details (OS, Node.js version, etc.)
+
+## 📝 Changelog
+
+### v1.0.0 (Current)
+
+- ✅ Initial release
+- ✅ Full CRUD operations for todos
+- ✅ Dark/Light mode toggle
+- ✅ Responsive design
+- ✅ Comprehensive testing
+- ✅ TypeScript implementation
+- ✅ Input validation
+- ✅ Error handling
+
+## 🙏 Acknowledgments
+
+- React team for the amazing framework
+- MongoDB team for the database
+- Tailwind CSS for the styling system
+- Vite team for the build tool
+- All contributors and testers
