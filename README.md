@@ -140,20 +140,6 @@ Create a `.env` file in the server directory:
 cp server/.env.example server/.env
 ```
 
-Edit the `.env` file with your configuration:
-
-```env
-# Server Configuration
-PORT=8080
-NODE_ENV=development
-
-# Database Configuration
-MONGO_URI=mongodb://localhost:27017/todo-app
-
-# Optional: For production
-# MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/todo-app
-```
-
 ### 5. Frontend Setup
 
 ```bash
@@ -288,19 +274,6 @@ npm start
 cd todo
 npm run build
 npm run preview
-```
-
-### Environment Variables for Production
-
-```env
-# Production Environment
-NODE_ENV=production
-PORT=8080
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/todo-app
-
-# Optional: Add additional security configurations
-JWT_SECRET=your-jwt-secret-key
-CORS_ORIGIN=https://yourdomain.com
 ```
 
 ### Deployment Platforms
